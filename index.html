@@ -82,24 +82,16 @@
     <div class="stars">★ ★ ★</div>
 
     <button class="vote-button">Vote for Kai</button>
-    <div id="visitor-count">Loading Visitors...</div>
-
-<div id="visitor-count">Loading visitors...</div>
+    <div id="visitor-count">Loading...</div>
 
 <script>
-const namespace = window.location.hostname.replace(/\./g, "_");
-const key = "visits";
-
-fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+fetch("https://api.simplecounter.io?key=librebook-counter")
   .then(res => res.json())
   .then(data => {
-    document.getElementById("visitor-count").innerText = `Visitors: ${data.value}`;
-  })
-  .catch(err => {
-    console.error(err);
-    document.getElementById("visitor-count").innerText = "—";
+    document.getElementById("visitor-count").innerText = "Visitors: " + data.count;
   });
 </script>
+
 
 
   </div>
