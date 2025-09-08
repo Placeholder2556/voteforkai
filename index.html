@@ -82,18 +82,6 @@
     <div class="stars">★ ★ ★</div>
 
     <button class="vote-button">Vote for Kai</button>
-    <div id="visitor-count">Loading...</div>
-
-<script>
-async function incrementCounter() {
-  const res = await fetch("https://raw.githubusercontent.com/Placeholder2556/voteforkai/main/counter.json");
-  const data = await res.json();
-  document.getElementById("visitor-count").innerText = "Visitors: " + data.visits;
-}
-
-incrementCounter();
-</script>
-
 
   <footer>
     <p>Paid for by Kai’s friends who believe in better school for all.</p>
