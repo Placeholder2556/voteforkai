@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Arial Black', sans-serif;
+      font-family: arial black, sans-serif;
       background: white;
       color: #222;
       text-align: center;
@@ -17,6 +17,22 @@
       background: linear-gradient(to right, #d32f2f, #1565c0);
       color: white;
       padding: 2rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    header img.flag {
+      width: 80px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    header .text {
+      width: 100%;
     }
 
     header h1 {
@@ -31,7 +47,23 @@
       margin-top: 0.5rem;
     }
 
-    .maincontainer {
+    @media (min-width: 768px) {
+      header {
+        flex-direction: row;
+      }
+      header img.flag {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-bottom: 0;
+      }
+      header .text {
+        width: 100%;
+      }
+    }
+
+    .main {
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -39,9 +71,10 @@
       padding: 2rem 1rem;
       max-width: 1200px;
       margin: 0 auto;
+      flex-wrap: wrap;
     }
 
-    .sideimage {
+    .sidepic {
       width: 300px;
       height: auto;
     }
@@ -58,7 +91,7 @@
       color: #d32f2f;
     }
 
-    .votebutton {
+    .vote {
       background: #1565c0;
       color: white;
       padding: 1rem 2rem;
@@ -72,7 +105,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    .votebutton:hover {
+    .vote:hover {
       background: #0d47a1;
     }
 
@@ -92,27 +125,29 @@
   </style>
 </head>
 <body>
-  <header id="maincontainer">
-    <img src="/local/flags/kz.png" alt="flag" class="sideimage">
-    <h1>Kai үшін дауыс бер!</h1>
-    <h2>Бас оқушы сайлауы 2025</h2>
+  <header>
+    <img src="/local/flags/kz.png" alt="flag" class="flag">
+    <div class="text">
+      <h1>Kai үшін дауыс бер!</h1>
+      <h2>Бас оқушы сайлауы 2025</h2>
+    </div>
   </header>
 
-  <div class="maincontainer">
-    <img src="/images/image1.jpg" alt="left" class="sideimage">
+  <div class="main">
+    <img src="/images/image1.jpg" alt="left" class="sidepic">
     
     <div class="content">
       <p class="slogan">«Шынайы болу. Kai болу.»</p>
-      <p>Kai СІЗДІ Бас оқушы кеңесінде таныстыруға дайын. Жаңа идеяларымен, мектеп рухымен және жанқиярлықпен Kai әр дауыстың естілуін қамтамасыз етеді. Жағымды өзгерістерді бірге жасайық!</p>
+      <p>Kai сізді Бас оқушы кеңесінде таныстыруға дайын Жаңа идеяларымен мектеп рухымен және жанқиярлықпен Kai әр дауыстың естілуін қамтамасыз етеді Жағымды өзгерістерді бірге жасайық</p>
       <div class="stars">★ ★ ★</div>
-      <a href="https://www.twitch.tv/kaibizzbizz"><button class="votebutton">Kai үшін дауыс бер!</button></a>
+      <a href="https://www.twitch.tv/kaibizzbizz"><button class="vote">Kai үшін дауыс бер!</button></a>
     </div>
 
-    <img src="/images/image1.jpg" alt="right" class="sideimage">
+    <img src="/images/image1.jpg" alt="right" class="sidepic">
   </div>
 
   <footer>
-    <p>Барлық оқушыға жақсы мектепті қалайтын Kai-дің достары қаржыландырды.</p>
+    <p>Барлық оқушыға жақсы мектепті қалайтын Kai-дің достары қаржыландырды</p>
   </footer>
 </body>
 </html>
