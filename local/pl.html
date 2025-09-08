@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oddaj swoj glos dla Kaia.</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial Black', sans-serif;
+      background: white;
+      color: #222;
+      text-align: center;
+    }
+
+    header {
+      background: linear-gradient(to right, #d32f2f, #1565c0);
+      color: white;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    header h2 {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .maincontainer {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sideimage {
+      width: 300px;
+      height: auto;
+    }
+
+    .content {
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .slogan {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 2rem 0;
+      color: #d32f2f;
+    }
+
+    .votebutton {
+      background: #1565c0;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .votebutton:hover {
+      background: #0d47a1;
+    }
+
+    footer {
+      background: #f5f5f5;
+      padding: 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-top: 2px solid #ccc;
+    }
+
+    .stars {
+      font-size: 2rem;
+      color: #1565c0;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header id="maincontainer">
+    <img src="flags/pl.png" alt="flag" class="sideimage">
+    <h1>Oddaj swoj glos dla Kaia.</h1>
+    <h2>Kampania na rzecz przywództwa studenckiego 2025</h2>
+  </header>
+
+  <div class="maincontainer">
+    <img src="../images/image1.jpg" alt="Left" class="sideimage">
+    
+    <div class="content">
+      <p class="slogan">“Keeping it real. Keeping it Kai.”</p>
+      <p>Kai is ready to represent YOU on the Head Student Board. With fresh ideas, school spirit, and dedication, Kai will make sure every voice is heard. Let’s bring positive change together!</p>
+      <div class="stars">★ ★ ★</div>
+      <a href="https://www.twitch.tv/kaibizzbizz"><button class="votebutton">Vote for Kai</button></a>
+    </div>
+
+    <img src="../images/image1.jpg" alt="Right" class="sideimage">
+  </div>
+
+  <footer>
+    <p>Paid for by Kai’s friends who believe in better school for all.</p>
+  </footer>
+</body>
+</html>
