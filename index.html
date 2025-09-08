@@ -84,14 +84,23 @@
     <button class="vote-button">Vote for Kai</button>
     <div id="visitor-count">Loading Visitors...</div>
 
+<div id="visitor-count">Loading visitors...</div>
+
 <script>
-// "librebook-counter" is just a unique key – change it to anything
-fetch("https://api.countapi.xyz/hit/librebook-counter/visits")
+const namespace = window.location.hostname.replace(/\./g, "_");
+const key = "visits";
+
+fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
   .then(res => res.json())
-  .then(res => {
-    document.getElementById("visitor-count").innerText = "Visitors: " + res.value;
+  .then(data => {
+    document.getElementById("visitor-count").innerText = `Visitors: ${data.value}`;
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById("visitor-count").innerText = "—";
   });
 </script>
+
 
   </div>
 
