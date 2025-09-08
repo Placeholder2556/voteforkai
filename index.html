@@ -82,6 +82,17 @@
     <div class="stars">★ ★ ★</div>
 
     <button class="vote-button">Vote for Kai</button>
+    <div id="visitor-count">Loading Visitors...</div>
+
+<script>
+// "librebook-counter" is just a unique key – change it to anything
+fetch("https://api.countapi.xyz/hit/librebook-counter/visits")
+  .then(res => res.json())
+  .then(res => {
+    document.getElementById("visitor-count").innerText = "Visitors: " + res.value;
+  });
+</script>
+
   </div>
 
   <footer>
