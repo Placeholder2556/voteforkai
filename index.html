@@ -82,15 +82,20 @@
     <div class="stars">★ ★ ★</div>
 
     <button class="vote-button">Vote for Kai</button>
-    <div id="visitor-count">Loading...</div>
+    <div id="visitor-count">Loading visitors...</div>
 
 <script>
-fetch("https://api.simplecounter.io?key=librebook-counter")
+fetch("https://api.countapi.xyz/hit/voteforkai.win/visits")
   .then(res => res.json())
   .then(data => {
-    document.getElementById("visitor-count").innerText = "Visitors: " + data.count;
+    document.getElementById("visitor-count").innerText = "Visitors: " + data.value;
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById("visitor-count").innerText = "Error loading counter";
   });
 </script>
+
 
 
 
