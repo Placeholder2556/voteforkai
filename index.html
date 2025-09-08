@@ -89,6 +89,53 @@
       color: #1565c0;
       margin-top: 1rem;
     }
+
+/* Imported from Librebook */
+.dropbtn {
+  color: white;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: #1877f2;
+  overflow: hidden;
+  border-radius: 5px !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-content.show {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+
+.dropdown-content a {
+  display: inline-block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-content a:hover {
+  background-color: #115293;
+}
   </style>
 </head>
 <body>
