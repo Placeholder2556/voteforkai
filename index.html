@@ -179,6 +179,29 @@
       to { width: 100%; } 
     }
 
+    .underline2 { 
+      position: relative; 
+      display:inline-block; 
+      padding-bottom:6px; 
+    }
+
+    .underline2::after {
+      content:"";
+      position:absolute; 
+      left:0; 
+      bottom:0; 
+      height:3px; 
+      width:0; 
+      background:white;
+      animation: underline_grow 900ms ease forwards;
+      animation-delay: 120ms;
+    }
+
+    @keyframes underline2_grow { 
+      from { width: 0; } 
+      to { width: 100%; } 
+    }
+
     /* Mobile scaling */
     @media (max-width: 768px) {
       header h1 {
@@ -237,7 +260,7 @@
     
     <div class="content">
       <p class="slogan">“Keeping it real. Keeping it Kai.”</p>
-      <p>Kai is ready to represent YOU on the Head Student Board for community and culture. With fresh ideas, school spirit, and dedication, Kai will make sure every voice is heard. Let’s bring positive change together!</p>
+      <p>Kai is ready to represent YOU on the Head Student Board for </p><p class="underline2">community and culture.</p><p> With fresh ideas, school spirit, and dedication, Kai will make sure every voice is heard. Let’s bring positive change together!</p>
       <div class="stars">★ ★ ★</div>
       <a href="https://www.twitch.tv/kaibizzbizz"><button class="vote_button">Vote for Kai</button></a>
     </div>
