@@ -155,13 +155,21 @@
     .dropdown-content a:hover {
       background-color: #0d47a1;
     }
+    .underline { position: relative; display:inline-block; padding-bottom:6px; }
+    .underline::after {
+      content:"";
+      position:absolute; left:0; bottom:0; height:3px; width:0; background:white;
+      animation: underlineGrow 900ms ease forwards;
+      animation-delay: 120ms;
+    }
+    @keyframes underlineGrow { from { width: 0; } to { width: 100%; } }
   </style>
 </head>
 <body>
   <header>
     <h1>Vote for Kai</h1>
     <h2>Head Student Campaign 2025</h2>
-    <h2>Kai Pearson for community and culture</h2>
+    <h2 class="underline">Kai Pearson for community and culture</h2>
   </header>
 
   <div class="dropdown">
