@@ -237,7 +237,7 @@
           font-size: 2em;
           color: #333;
     }
-    .Buttons {
+    .twButtons {
       display: inline-flex;
       align-items: center;
       gap: 10px; 
@@ -255,10 +255,35 @@
       text-shadow: 0px 1px 0px #000000;
     }
 
-    .Buttons:hover {
+    .twButtons:hover {
     	background-color:#a970ff;
     }
-    .Buttons:active {
+    .twButtons:active {
+    	position:relative;
+    	top:1px;
+    }
+    .ytButtons {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px; 
+      box-shadow: 6px 6px 0px 0px #000000;
+      background-color: #ff0030;
+      border-radius: 28px;
+      border: 1px solid #000000;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: Arial;
+      font-size: 17px;
+      font-weight: bold;
+      padding: 16px 60px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #000000;
+    }
+
+    .ytButtons:hover {
+    	background-color:#a970ff;
+    }
+    .ytButtons:active {
     	position:relative;
     	top:1px;
     }
@@ -293,7 +318,7 @@
           }, 1000);
       </script>
     <mybuttons>
-      <a href="https://www.twitch.tv/kaibizzbizz" class="Buttons"><img width="24px" height="24px" src="icons/twitch.svg">Watch me on Twitch!</a>
+      <a href="https://www.twitch.tv/kaibizzbizz" class="twButtons"><img width="24px" height="24px" src="icons/twitch.svg">Watch me on Twitch!</a><a href="https://www.youtube.com/@kaibizzbizz" class="ytButtons"><img width="24px" height="24px" src="icons/yt.svg">Subscribe to my YouTube!</a>
     </mybuttons>
   </body>
 </html>
