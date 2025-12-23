@@ -1,352 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vote for Kai</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KaiBizzBizz Sleep Stream</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Arial Black', sans-serif;
+      font-family: "Arial Black", Arial, sans-serif;
       background: white;
       color: #222;
       text-align: center;
     }
-
     header {
       background: linear-gradient(to right, #1565c0, #d32f2f);
       color: white;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1rem;
     }
-
     header h1 {
       font-size: 3rem;
       margin: 0;
       text-transform: uppercase;
       letter-spacing: 4px;
     }
-
     header h2 {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
+      font-size: 1.4rem;
+      margin-top: 0.6rem;
     }
-
-    .main_container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 2rem;
-      padding: 2rem 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .side_image {
-      width: 300px;
-      height: auto;
-      max-height: 310px;
-    }
-
-    .content {
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .slogan {
-      font-size: 2rem;
-      font-weight: bold;
-      margin: 2rem 0;
-      color: #d32f2f;
-    }
-
-    .vote_button {
-      background: #1565c0;
-      color: white;
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      text-transform: uppercase;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .vote_button:hover {
-      background: #0d47a1;
-    }
-
-    footer {
-      background: #f5f5f5;
-      padding: 1rem;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      border-top: 2px solid #ccc;
-    }
-
-    .stars {
-      font-size: 2rem;
-      color: #1565c0;
-      margin-top: 1rem;
-    }
-
-    /* Imported from Librebook */
-    .drop_button {
-      color: white;
-      font-size: 16px;
-      background: #1565c0;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      text-transform: uppercase;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background 0.3s ease;
-    }
-
-    .drop_button:hover {
-      background: #0d47a1;
-    }
-
-    .dropdown {
+    .underline {
       position: relative;
       display: inline-block;
-      margin: 1rem 0;
+      padding-bottom: 6px;
     }
-
-    .dropdown_content {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #1877f2;
-      min-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .dropdown_content.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .dropdown_content a {
-      display: block;
-      padding: 12px 16px;
-      text-decoration: none;
-      color: white;
-      background: linear-gradient(to right, #1565c0, #1e88e5);
-      transition: background 0.3s ease;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .dropdown_content a:last-child {
-      border-bottom: none;
-      border-radius: 0 0 10px 10px;
-    }
-
-    .dropdown_content a:hover {
-      background-color: #0d47a1;
-    }
-
-    .underline { 
-      position: relative; 
-      display:inline-block; 
-      padding-bottom:6px; 
-    }
-
     .underline::after {
-      content:"";
-      position:absolute; 
-      left:0; 
-      bottom:0; 
-      height:3px; 
-      width:0; 
-      background:white;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 0;
+      background: white;
       animation: underline_grow 900ms ease forwards;
-      animation-delay: 120ms;
+    }
+    @keyframes underline_grow {
+      to { width: 100%; }
+    }
+    main {
+      padding: 2.5rem 1rem;
+    }
+    #countdown {
+      font-size: 2rem;
+      margin: 1.5rem 0;
+      font-weight: bold;
+      color: #1565c0;
+    }
+    .mybuttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+    .mybuttons a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 28px;
+      border: 1px solid #000;
+      font-family: Arial, sans-serif;
+      font-size: 17px;
+      font-weight: bold;
+      padding: 16px 50px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 6px 6px 0px #000;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.1s ease;
+    }
+    .mybuttons a:active {
+      transform: translateY(1px);
+    }
+    .mybuttons img {
+      width: 24px;
+      height: 24px;
+    }
+    .twButtons {
+      background: #a970ff;
+      color: white;
     }
 
-    @keyframes underline_grow { 
-      from { width: 0; } 
-      to { width: 100%; } 
+    .ytButtons {
+      background: #ff0030;
+      color: white;
     }
-
-    .underline2 { 
-      position: relative; 
-      display:inline-block; 
-      padding-bottom:6px; 
+    .tkButtons {
+      background: linear-gradient(
+        90deg,
+        #00f2ea 0%,
+        #000000 50%,
+        #ff0050 100%
+      );
+      color: white;
     }
-
-    .underline2::hover {
-      content:"";
-      position:absolute; 
-      left:0; 
-      bottom:0; 
-      height:3px; 
-      width:0; 
-      background:white;
-      animation: underline_grow 900ms ease forwards;
-      animation-delay: 120ms;
+    .mybuttons a:hover {
+      background: white;
+      color: #000;
     }
-
-    /* Mobile scaling */
     @media (max-width: 768px) {
       header h1 {
         font-size: 2rem;
       }
 
       header h2 {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
 
-      .main_container {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .side_image {
-        width: 80%;
-        max-width: 250px;
-        height: auto;
-      }
-
-      .content {
-        max-width: 100%;
-        padding: 0 1rem;
-      }
-
-      .slogan {
+      #countdown {
         font-size: 1.5rem;
       }
-
-      .vote_button {
-        font-size: 1.2rem;
-        padding: 0.8rem 1.2rem;
-      }
-    }
-    #countdown {
-          font-size: 2em;
-          color: #333;
-    }
-    .twButtons {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px; 
-      box-shadow: 6px 6px 0px 0px #000000;
-      background-color: #a970ff;
-      border-radius: 28px;
-      border: 1px solid #000000;
-      cursor: pointer;
-      color: #ffffff;
-      font-family: Arial;
-      font-size: 17px;
-      font-weight: bold;
-      padding: 16px 60px;
-      text-decoration: none;
-    }
-
-    .twButtons:hover {
-    	background-color: white;
-      color: #000000;
-    }
-    .twButtons:active {
-    	position:relative;
-    	top:1px;
-    }
-    .tkButtons {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px; 
-      box-shadow: 6px 6px 0px 0px linear-gradient(90deg,rgba(0, 242, 234, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(255, 0, 80, 1) 100%);
-      background-color: #00F2EA;
-      border-radius: 28px;
-      border: 1px solid #000000;
-      cursor: pointer;
-      color: white;
-      font-family: Arial;
-      font-size: 17px;
-      font-weight: bold;
-      padding: 16px 60px;
-      text-decoration: none;
-    }
-
-    .tkButtons:hover {
-    	background-color: white;
-      color: #000000;
-    }
-    .tkButtons:active {
-    	position:relative;
-    	top:1px;
-    }
-    .ytButtons {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px; 
-      box-shadow: 6px 6px 0px 0px #000000;
-      background-color: #ff0030;
-      border-radius: 28px;
-      border: 1px solid #000000;
-      cursor: pointer;
-      color: #ffffff;
-      font-family: Arial;
-      font-size: 17px;
-      font-weight: bold;
-      padding: 16px 60px;
-      text-decoration: none;
-    }
-
-    .ytButtons:hover {
-    	background-color: white;
-      color: #000000;
-    }
-    .ytButtons:active {
-    	position:relative;
-    	top:1px;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>The KaiBizzBizz sleep stream!</h1>
-    <h2 class="underline">December 26th 2025 22:30pm UTC+0</h2>
+    <h1>The KaiBizzBizz Sleep Stream!</h1>
+    <h2 class="underline">December 26th 2025 · 22:30 UTC</h2>
   </header>
-  <body>
-      <h1>Countdown to the KaiBizzBizz sleep stream!</h1>
-      <div id="countdown"></div>
-      <br>
-      <script>
-          const date = new Date("December 26, 2025 22:30:00").getTime();
-  
-          const countdown = setInterval(() => {
-              const now = new Date().getTime();
-              const distance = date - now;
-              if (distance < 0) {
-                  clearInterval(countdown);
-                  document.getElementById("countdown").innerHTML = "The time has arrived!";
-                  return;
-              }
-              const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-              const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-              const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-              document.getElementById("countdown").innerHTML =
-                  days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-          }, 1000);
-      </script>
-    <mybuttons>
-      <a href="https://www.twitch.tv/kaibizzbizz" class="twButtons"><img width="24px" height="24px" src="icons/twitch.svg">Watch me on Twitch!</a><a href="https://www.youtube.com/@kaibizzbizz" class="ytButtons"><img width="24px" height="24px" src="icons/yt.svg">Subscribe to my YouTube!</a><a href="https://www.tiktok.com/@kaibizzbizz" class="tkButtons"><img width="24px" height="24px" src="icons/tiktok.svg">Follow me on TikTok!</a>
-    </mybuttons>
-  </body>
-</html>
-
+  <main>
+    <h1>Countdown to the stream</h1>
+    <div id="countdown"></div>
+    <div class="mybuttons">
+      <a href="https://www.twitch.tv/kaibizzbizz" class="twButtons">
+        <img src="icons/twitch.svg" alt="">
+        Watch on Twitch
+      </a>
+      <a href="https://www.youtube.com/@kaibizzbizz" class="ytButtons">
+        <img src="icons/yt.svg" alt="">
+        Subscribe on YouTube
+      </a>
+      <a href="https://www.tiktok.com/@kaibizzbizz" class="tkButtons">
+        <img src="icons/tiktok.svg" alt="">
+        Follow on TikTok
+      </a>
+    </div>
+  </main>
+  <script>
+    const targetDate = new Date("December 26, 2025 22:30:00 UTC").getTime();
+    const countdown = setInterval(() => {
+      const now = Date.now();
+      const distance = targetDate - now;
+      if (distance <= 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").textContent =
+          "The stream has started!";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+      document.getElementById("countdown").textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
 </body>
 </html>
