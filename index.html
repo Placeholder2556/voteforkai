@@ -118,12 +118,39 @@
         font-size: 1.5rem;
       }
     }
+    #events {
+      margin-top: 3rem;
+    }
+    
+    #eventList {
+      list-style: none;
+      padding: 0;
+      max-width: 500px;
+      margin: 1rem auto 0;
+    }
+    
+    #eventList li {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      font-family: Arial, sans-serif;
+    }
+    
+    .event-live {
+      color: #d32f2f;
+      font-weight: bold;
+    }
+    
+    .event-video {
+      color: #1565c0;
+      font-weight: bold;
+    }
+
   </style>
 </head>
 <body>
   <header>
     <h1>The KaiBizzBizz Sleep Stream!</h1>
-    <h2 class="underline">December 26th 2025 · 22:30 UTC</h2>
+    <h2 class="underline" id="nextStreamText">Loading schedule…</h2>
   </header>
   <main>
     <h1>Countdown to the stream</h1>
@@ -142,25 +169,57 @@
         Follow on TikTok
       </a>
     </div>
+    <section id="events">
+      <h2>Upcoming Events</h2>
+      <ul id="eventList"></ul>
+    </section>
   </main>
   <script>
-    const targetDate = new Date("December 26, 2025 22:30:00 UTC").getTime();
-    const countdown = setInterval(() => {
+    async function loadEvents() {
+      const res = await fetch("events.json");
+      const data = await res.json();
       const now = Date.now();
-      const distance = targetDate - now;
-      if (distance <= 0) {
-        clearInterval(countdown);
+      const events = data.events
+        .map(e => ({ ...e, time: new Date(e.datetime).getTime() }))
+        .sort((a, b) => a.time - b.time);
+      const nextEvent = events.find(e => e.time > now);
+      if (!nextEvent) {
         document.getElementById("countdown").textContent =
-          "The stream has started!";
+          "No upcoming events scheduled.";
         return;
       }
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / (1000 * 60)) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
-      document.getElementById("countdown").textContent =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
-  </script>
+      const dateObj = new Date(nextEvent.datetime);
+      document.getElementById("nextStreamText").textContent =
+        `${dateObj.toUTCString()} · ${nextEvent.type.toUpperCase()}`;
+      const countdownEl = document.getElementById("countdown");
+      const timer = setInterval(() => {
+        const distance = nextEvent.time - Date.now();
+        if (distance <= 0) {
+          clearInterval(timer);
+          countdownEl.textContent = "The stream has started!";
+          return;
+        }
+        const d = Math.floor(distance / 86400000);
+        const h = Math.floor((distance / 3600000) % 24);
+        const m = Math.floor((distance / 60000) % 60);
+        const s = Math.floor((distance / 1000) % 60);
+        countdownEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
+      }, 1000);
+      const list = document.getElementById("eventList");
+      events.forEach(event => {
+        const li = document.createElement("li");
+        const date = new Date(event.datetime).toUTCString();
+        li.innerHTML = `
+          ${event.title}<br>
+          ${date} ·
+          <span class="event-${event.type}">
+            ${event.type.toUpperCase()}
+          </span>
+        `;
+        list.appendChild(li);
+      });
+    }
+    loadEvents();
+    </script>
 </body>
 </html>
