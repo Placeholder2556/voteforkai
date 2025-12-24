@@ -175,28 +175,43 @@
     </section>
   </main>
   <script>
+    let events = [];
+    let currentIndex = 0;
+    let timer = null;
     async function loadEvents() {
       const res = await fetch("events.json");
       const data = await res.json();
       const now = Date.now();
-      const events = data.events
-        .map(e => ({ ...e, time: new Date(e.datetime).getTime() }))
+      events = data.events
+        .map(e => ({
+          ...e,
+          time: new Date(e.datetime).getTime()
+        }))
         .sort((a, b) => a.time - b.time);
-      const nextEvent = events.find(e => e.time > now);
-      if (!nextEvent) {
+      currentIndex = events.findIndex(e => e.time > now);
+      if (currentIndex === -1) {
         document.getElementById("countdown").textContent =
           "No upcoming events scheduled.";
         return;
       }
-      const dateObj = new Date(nextEvent.datetime);
-      document.getElementById("nextStreamText").textContent =
-        `${dateObj.toUTCString()} · ${nextEvent.type.toUpperCase()}`;
+      renderEventList();
+      startCountdown();
+    }
+    function startCountdown() {
+      if (timer) clearInterval(timer);
+      const event = events[currentIndex];
+      const header = document.getElementById("nextStreamText");
       const countdownEl = document.getElementById("countdown");
-      const timer = setInterval(() => {
-        const distance = nextEvent.time - Date.now();
+      const date = new Date(event.datetime);
+      header.textContent =
+        `${date.toUTCString()} · ${event.type.toUpperCase()}`;
+      timer = setInterval(() => {
+        const distance = event.time - Date.now();
         if (distance <= 0) {
           clearInterval(timer);
-          countdownEl.textContent = "The stream has started!";
+          countdownEl.textContent = "Event started!";
+          currentIndex++;
+          setTimeout(startCountdown, 2000);
           return;
         }
         const d = Math.floor(distance / 86400000);
@@ -205,21 +220,27 @@
         const s = Math.floor((distance / 1000) % 60);
         countdownEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
       }, 1000);
+    }
+    function renderEventList() {
       const list = document.getElementById("eventList");
-      events.forEach(event => {
+      list.innerHTML = "";
+      events.forEach((event, index) => {
         const li = document.createElement("li");
         const date = new Date(event.datetime).toUTCString();
+        let status = "";
+        if (index === currentIndex) status = " (NEXT)";
+        if (index < currentIndex) status = " (PAST)";
         li.innerHTML = `
           ${event.title}<br>
           ${date} ·
           <span class="event-${event.type}">
             ${event.type.toUpperCase()}
-          </span>
+          </span>${status}
         `;
         list.appendChild(li);
       });
     }
     loadEvents();
-    </script>
+  </script>
 </body>
 </html>
